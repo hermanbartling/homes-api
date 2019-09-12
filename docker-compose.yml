@@ -1,0 +1,42 @@
+version: '3'
+
+###################
+#
+# Start the cluster with:
+#
+# docker-compose down && docker-compose pull && LOCAL_IP=$(hostname -I | awk '{print $1}') docker-compose up
+#
+###################
+
+
+services:
+#  difo-homes-api:
+#    build: .
+#    ports:
+#    - 8080:8080
+#    environment:
+#      - DATABASE_HOST=192.168.1.116:3306
+#      - DB_USERNAME=user
+#      - DB_PASSWORD=password
+#      - ADMIN_API_UID=johnnie
+#      - ADMIN_API_PWD=doe
+  db:
+    #    user: "1000:50"
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'hemnet'
+      # So you don't have to use root, but you can if you like
+      MYSQL_USER: 'user'
+      # You can use whatever password you like
+      MYSQL_PASSWORD: 'password'
+      # Password for root access
+      MYSQL_ROOT_PASSWORD: 'password'
+    ports:
+      # <Port exposed> : < MySQL Port running inside container>
+      - '3307:3306'
+    expose:
+      # Opens port 3306 on the container
+      - '3306'
+    #    command: --init-file /var/lib/mysql/db_init.sql
+    command: --default-authentication-plugin=mysql_native_password

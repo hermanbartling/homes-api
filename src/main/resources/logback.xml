@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <appender name="nonJsonAppender" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%d{yyyy-MM-dd HH:mm:ss:SSS} [%X{trackingId}] %-5level %logger{36}.%L %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!--<appender name="jsonAppender" class="ch.qos.logback.core.ConsoleAppender">-->
+        <!--<encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">-->
+
+            <!--<providers>-->
+                <!--<mdc/>-->
+                <!--<message/>-->
+                <!--<arguments/> &lt;!&ndash; Contains all parameters set in StructuredArguments &ndash;&gt;-->
+                <!--<timestamp>-->
+                    <!--<fieldName>date</fieldName>-->
+                <!--</timestamp>-->
+                <!--<logLevel>-->
+                    <!--<fieldName>logLevel</fieldName>-->
+                <!--</logLevel>-->
+                <!--<loggerName>-->
+                    <!--<fieldName>loggerName</fieldName>-->
+                <!--</loggerName>-->
+                <!--<threadName>-->
+                    <!--<fieldName>threadName</fieldName>-->
+                <!--</threadName>-->
+                <!--<stackTrace>-->
+                    <!--<fieldName>stackTrace</fieldName>-->
+                    <!--<throwableConverter class="net.logstash.logback.stacktrace.ShortenedThrowableConverter">-->
+                        <!--<maxLength>2048</maxLength>-->
+                        <!--<rootCauseFirst>true</rootCauseFirst>-->
+                    <!--</throwableConverter>-->
+                <!--</stackTrace>-->
+            <!--</providers>-->
+
+        <!--</encoder>-->
+    <!--</appender>-->
+
+    <logger name="se.difo" level="INFO"/>
+
+    <root level="INFO">
+        <appender-ref ref="nonJsonAppender"/>
+    </root>
+
+</configuration>
